@@ -3,20 +3,22 @@ import { SafeAreaView, Text, FlatList, ActivityIndicator } from 'react-native';
 import Config from 'react-native-config';
 import ProductCard from '../../components/ProductCard';
 import useFetch from '../../hooks/useFetch';
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
 
 ProductCard
 
 const Products = () => {
-   const {loading, data, error} = useFetch(Config.API_URL)
+   const {loading, data, error} = useFetch(Config.API_URL + "asd")
 
     const renderProduct = ({item}) => <ProductCard product = {item}/>
 
     if(loading) {
-        return <ActivityIndicator size="large"/>
+        return <Loading/>
     }
 
     if(error) {
-        return <Text style = {{margin: 10, fontWeight: "bold", color: "#ff3333"}}>{error}</Text>
+        return <Error/>
     }
     return (
         <SafeAreaView>
