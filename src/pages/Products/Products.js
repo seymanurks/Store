@@ -1,31 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { SafeAreaView, Text, FlatList, ActivityIndicator } from 'react-native';
 import Config from 'react-native-config';
-import axios from 'axios';
 import ProductCard from '../../components/ProductCard';
+import useFetch from '../../hooks/useFetch';
 
 ProductCard
 
 const Products = () => {
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [data, setData] = useState([])
-    
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-    const fetchData = async () => {
-        try {
-            const {data: productData} = await axios.get(Config.API_URL + "asd")
-            setData(productData)
-            setLoading(false)
-        } 
-        catch (error) {
-            setError(error.message)
-            setLoading(false)
-        }
-    }
+   const {loading, data, error} = useFetch(Config.API_URL)
 
     const renderProduct = ({item}) => <ProductCard product = {item}/>
 
