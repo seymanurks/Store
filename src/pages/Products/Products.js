@@ -6,16 +6,14 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 
-ProductCard
-
 const Products = ({navigation}) => {
    const {loading, data, error} = useFetch(Config.API_URL)
 
-   const handleProduct = () => {
-    navigation.navigate("DetailPage")
+   const handleProduct = (id) => {
+    navigation.navigate("DetailPage", {id})
    }
 
-    const renderProduct = ({item}) => <ProductCard product = {item} onSelect={handleProduct}/>
+    const renderProduct = ({item}) => <ProductCard product = {item} onSelect={() => handleProduct(item.id)}/>
 
     if(loading) {
         return <Loading/>
