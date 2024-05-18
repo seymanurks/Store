@@ -23,7 +23,7 @@ const Router = () => {
         name='DetailPage' 
         component={Detail}
         options={{
-          title: "Details",
+          title: "Product Details",
           headerStyle: {backgroundColor: "#3C5B6F"},
           headerTitleStyle: {color: "#EEF7FF"},
           headerTintColor: "#EEF7FF"
