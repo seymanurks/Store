@@ -8,10 +8,14 @@ import Error from '../../components/Error';
 
 ProductCard
 
-const Products = () => {
-   const {loading, data, error} = useFetch(Config.API_URL + "asd")
+const Products = ({navigation}) => {
+   const {loading, data, error} = useFetch(Config.API_URL)
 
-    const renderProduct = ({item}) => <ProductCard product = {item}/>
+   const handleProduct = () => {
+    navigation.navigate("DetailPage")
+   }
+
+    const renderProduct = ({item}) => <ProductCard product = {item} onSelect={handleProduct}/>
 
     if(loading) {
         return <Loading/>
@@ -21,9 +25,7 @@ const Products = () => {
         return <Error/>
     }
     return (
-        <SafeAreaView>
             <FlatList data={data} renderItem={renderProduct}/>
-        </SafeAreaView>
     )
 }
 
