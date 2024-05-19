@@ -11,11 +11,11 @@ const Detail = ({route}) => {
     const {loading, error, data} = useFetch(`${Config.API_URL}/${id}`)
 
     if (loading) {
-        <Loading/>
+        return <Loading/>
     }
 
     if (error) {
-        <Error/>
+        return <Error/>
     }
 
     return(
